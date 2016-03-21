@@ -1,0 +1,13 @@
+<div style="padding: 20px">{{resultCount}}</div>
+<div class="row" style="padding: 20px" ng-repeat="r in resp">
+    <div class="col-md-2">
+        <img style="width: {{r.img_width}}" ng-src="{{r.img_url}}">
+    </div>
+    <div class="col-md-5">
+        <p>Price: {{r.price | currency: r.price_currency}}</p>
+        <p>Bedrooms: {{r.bedroom_number}}, Bathrooms: {{r.bathroom_number}},
+            Auction date: {{r.auction_date}}, Datasource name: {{r.datasource_name}}
+        </p>
+        <a href="{{r.lister_url}}">More</a>
+    </div>
+</div>
