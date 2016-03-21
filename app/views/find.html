@@ -19,7 +19,7 @@
         <div>
             History
             <div>
-                <div class="list-group" ng-repeat="histObj in historyData track by $index" id="myScrollspy">
+                <div class="list-group" ng-repeat="histObj in historyData track by $index">
                     <a class="list-group-item" href='{{histObj.link}}'>{{histObj.city}} {{histObj.type_deal}}<span class="badge">{{histObj.count}}</span></a>
                 </div>
             </div>

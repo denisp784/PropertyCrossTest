@@ -1,5 +1,7 @@
+
+
 testPropertyCross.service('loadService', function ($http) {
-    this.getBuilds = function (city, type_deal) {
+    this.getBuilds = function (city, type_deal, page) {
         return $http({
             url: "http://api.nestoria.co.uk/api",
             method: "JSONP",
@@ -9,28 +11,26 @@ testPropertyCross.service('loadService', function ($http) {
                 action: 'search_listings',
                 encoding: 'json',
                 listing_type: type_deal,
-                page: '1',
+                page: page,
                 place_name: city,
                 callback: 'JSON_CALLBACK'
             }
-        }).then(function (data) {
-            return data;
         });
     }
 })
 
 testPropertyCross.service('storageService', function () {
-    this.saveHistory = function (historyData){
-        window.localStorage['historyData'] = JSON.stringify(historyData);
+    this.saveHistory = function (stroragePath, historyData){
+        window.localStorage[stroragePath] = JSON.stringify(historyData);
     }
 
-    this.getHistory = function () {
-        return JSON.parse(window.localStorage['historyData'] || '{}');
+    this.getHistory = function (stroragePath) {
+        return JSON.parse(window.localStorage[stroragePath] || '{}');
     }
 
-    this.setResultCount = function (city, type_deal, count) {
+    this.setResultCount = function (storagePath, city, type_deal, count) {
         var historyData = [];
-        historyData = historyData.concat(this.getHistory());
+        historyData = historyData.concat(this.getHistory(storagePath));
         var flag = true;
         angular.forEach(historyData, function (historyObj) {
             if (flag && historyObj.city == city && historyObj.type_deal == type_deal){
@@ -38,6 +38,6 @@ testPropertyCross.service('storageService', function () {
                 flag = false;
             }
         });
-        this.saveHistory(historyData);
+        this.saveHistory(storagePath, historyData);
     }
 });

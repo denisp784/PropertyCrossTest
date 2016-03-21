@@ -1,9 +1,9 @@
 var testPropertyCross = angular.module('testPropertyCross', ['ngRoute']);
-
+var storageHistoryPath = 'historyData';
 testPropertyCross.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
-    when('/builds', {
-        templateUrl: 'views/builds.html',
+    when('/buildings', {
+        templateUrl: 'views/buildings.html',
         controller: 'ResultController'}).
     when('/find', {
         templateUrl: 'views/find.html',
