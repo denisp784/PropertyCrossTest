@@ -2,11 +2,11 @@
     <div class="jumbotron vertical-center">
         <div class="container">
             <label>
-                <input type="radio" ng-model="type_deal" ng-checked="true" value="buy">
+                <input type="radio" ng-model="typeDeal" ng-checked="true" value="buy">
                 Buy
             </label>
             <label>
-                <input type="radio" ng-model="type_deal" value="let">
+                <input type="radio" ng-model="typeDeal" value="let">
                 Rent
             </label>
             <br>
@@ -20,7 +20,7 @@
                 History
                 <div>
                     <div class="list-group" ng-repeat="histObj in historyData track by $index">
-                        <a class="list-group-item" href='{{histObj.link}}'>{{histObj.city}} {{histObj.type_deal}}<span
+                        <a class="list-group-item" href='{{histObj.link}}'>{{histObj.city}} {{histObj.typeDeal}}<span
                                 class="badge">{{histObj.count}}</span></a>
                     </div>
                 </div>
