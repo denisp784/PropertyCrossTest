@@ -8,6 +8,8 @@ testPropertyCross.config(['$routeProvider', function ($routeProvider) {
     when('/find', {
         templateUrl: 'views/find.html',
         controller: 'FindController'}).
+    when('/error', {
+        templateUrl: 'views/error.html'}).
     otherwise({
         redirectTo: '/find'
     });

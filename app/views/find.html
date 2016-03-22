@@ -1,29 +1,31 @@
+<form name = "findForm">
+    <div class="jumbotron vertical-center">
+        <div class="container">
+            <label>
+                <input type="radio" ng-model="type_deal" ng-checked="true" value="buy">
+                Buy
+            </label>
+            <label>
+                <input type="radio" ng-model="type_deal" value="let">
+                Rent
+            </label>
+            <br>
 
-<div class="jumbotron vertical-center">
-    <div class="container">
-        <label>
-            <input type="radio" ng-model="type_deal" ng-checked="true" value="buy">
-            Buy
-        </label>
-        <label>
-            <input type="radio" ng-model="type_deal" value="let">
-            Rent
-        </label>
-        <br>
-
-        <input type="text" ng-model="city"/>
-        <br>
-        <button class="btn btn-info" ng-click="getBuilds()">Go</button>
-        <br>
-        <br>
-        <div>
-            History
+            <input type="text" ng-model="city" required/>
+            <br>
+            <button type="submit" class="btn btn-info" ng-click="getBuildings()">Go</button>
+            <br>
+            <br>
             <div>
-                <div class="list-group" ng-repeat="histObj in historyData track by $index">
-                    <a class="list-group-item" href='{{histObj.link}}'>{{histObj.city}} {{histObj.type_deal}}<span class="badge">{{histObj.count}}</span></a>
+                History
+                <div>
+                    <div class="list-group" ng-repeat="histObj in historyData track by $index">
+                        <a class="list-group-item" href='{{histObj.link}}'>{{histObj.city}} {{histObj.type_deal}}<span
+                                class="badge">{{histObj.count}}</span></a>
+                    </div>
                 </div>
+                <button class="btn-danger" ng-click="clearHistory()">Clear history</button>
             </div>
-            <button class="btn-danger" ng-click="clearHistory()">Clear history</button>
         </div>
     </div>
-</div>
+</form>
