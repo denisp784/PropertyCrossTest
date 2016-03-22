@@ -1,8 +1,11 @@
-
-
-testPropertyCross.service('loadService', function ($http) {
-    this.getBuilds = function (city, type_deal, page) {
-        return $http({
+testPropertyCross.factory('buildingsRequest', function () {
+    var request = {};
+    var city, type_deal, page;
+    function getBuildingsRequest(city, type_deal, page){
+        this.city = city || '';
+        this.type_deal = type_deal || 'buy';
+        this.page = page || '1';
+        request = {
             url: "http://api.nestoria.co.uk/api",
             method: "JSONP",
             params: {
@@ -10,12 +13,22 @@ testPropertyCross.service('loadService', function ($http) {
                 pretty: '1',
                 action: 'search_listings',
                 encoding: 'json',
-                listing_type: type_deal,
-                page: page,
-                place_name: city,
+                listing_type: this.type_deal,
+                page: this.page,
+                place_name: this.city,
                 callback: 'JSON_CALLBACK'
             }
-        });
+        };
+        return request;
+    }
+    return{
+        getBuildingsRequest:getBuildingsRequest
+    }
+});
+
+testPropertyCross.service('loadService', function ($http, buildingsRequest) {
+    this.getBuilds = function (city, type_deal, page) {
+        return $http(buildingsRequest.getBuildingsRequest(city, type_deal, page));
     }
 })
 
