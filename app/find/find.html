@@ -1,4 +1,4 @@
-<form name = "findForm">
+<form name="findForm">
     <div class="jumbotron vertical-center">
         <div class="container">
             <label>
@@ -15,16 +15,17 @@
             <br>
             <button type="submit" class="btn btn-info" ng-click="getBuildings()">Go</button>
             <br>
+            <label style="color: red;">{{visibleError}}</label>
             <br>
             <div>
                 History
-                <div>
-                    <div class="list-group" ng-repeat="histObj in historyData track by $index">
-                        <a class="list-group-item" href='{{histObj.link}}'>{{histObj.city}} {{histObj.typeDeal}}<span
-                                class="badge">{{histObj.count}}</span></a>
-                    </div>
+                <div style="margin-bottom: 5px" class="list-group" ng-repeat="histObj in historyData track by $index">
+                    <a class="list-group-item" href='{{histObj.link}}'>{{histObj.city}} {{histObj.typeDeal}}<span
+                            class="badge">{{histObj.count}}</span></a>
                 </div>
-                <button class="btn-danger" ng-click="clearHistory()">Clear history</button>
+                <div class="text-right">
+                    <button class="btn-danger" ng-click="clearHistory()">Clear history</button>
+                </div>
             </div>
         </div>
     </div>

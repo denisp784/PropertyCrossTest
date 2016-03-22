@@ -33,10 +33,23 @@ testPropertyCross.service('historyService', function () {
     var storageHistoryPath = 'historyData';
 
     this.saveHistory = function (historyData){
-        window.localStorage[storageHistoryPath] = JSON.stringify(historyData);
+        localStorage[storageHistoryPath] = JSON.stringify(historyData);
     }
 
     this.getHistory = function () {
-        return JSON.parse(window.localStorage[storageHistoryPath] || '{}');
+        return JSON.parse(localStorage[storageHistoryPath] || '{}');
+    }
+});
+
+testPropertyCross.service('buildingService', function () {
+
+    var storageBuildingPath = 'buildingData';
+
+    this.saveData = function (buildingData){
+        sessionStorage[storageBuildingPath] = JSON.stringify(buildingData);
+    }
+
+    this.getData = function () {
+        return JSON.parse(sessionStorage[storageBuildingPath] || '{}');
     }
 });

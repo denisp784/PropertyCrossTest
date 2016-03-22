@@ -1,39 +1,5 @@
-testPropertyCross.controller('FindController', ['$scope', '$window', 'loadService', 'historyService',
-    function ($scope, $window, loadService, historyService) {
-        $scope.typeDeal = 'buy';
-        $scope.historyData = [];
-        $scope.historyData = $scope.historyData.concat(historyService.getHistory());
-        $scope.getBuildings = function () {
-            if ($scope.findForm.$valid) {
-                loadService.getBuildings($scope.city, $scope.typeDeal, '1').then(function (response) {
-                    var response = response.data;
-                    var href = '';
-                    if (['100', '101', '110'].indexOf(response.response.application_response_code) > -1) {
-                        href = '#/buildings?city=' + $scope.city + '&typeDeal=' + $scope.typeDeal;
-                        var historyObj = {
-                            'city': $scope.city,
-                            "typeDeal": $scope.typeDeal == 'buy' ? 'Buy' : 'Rent',
-                            'link': href,
-                            'count': response.response.total_results
-                        };
-                        $scope.historyData.unshift(historyObj);
-                        historyService.saveHistory($scope.historyData);
-                    } else {
-                        href = '#/error';
-                    }
-                    $window.location.href = href;
-                })
-            }
-            ;
-        }
-        $scope.clearHistory = function () {
-            $scope.historyData = [];
-            historyService.saveHistory($scope.historyData);
-        }
-    }]);
-
-testPropertyCross.controller('ResultController', ['$scope', '$routeParams', '$http', 'loadService',
-    function ($scope, $routeParams, $http, loadService) {
+testPropertyCross.controller('ResultController', ['$scope', '$routeParams', '$http', '$window', 'loadService', 'buildingService',
+    function ($scope, $routeParams, $http, $window, loadService, buildingService) {
         $scope.city = $routeParams.city;
         $scope.typeDeal = $routeParams.typeDeal;
         $scope.page = 1;
@@ -42,6 +8,7 @@ testPropertyCross.controller('ResultController', ['$scope', '$routeParams', '$ht
             $scope.buildings = buildings.data;
             $scope.resp = $scope.buildings.response.listings;
             $scope.pagesCount = $scope.buildings.response.total_pages;
+            $scope.resultCount = $scope.buildings.response.total_results;
         });
 
         $scope.getNumbersPages = function (page) {
@@ -69,6 +36,12 @@ testPropertyCross.controller('ResultController', ['$scope', '$routeParams', '$ht
             return pages;
         }
 
+        $scope.toBuilding = function (buildingData) {
+            buildingService.saveData(buildingData);
+            $window.location.href = '#/details'
+        }
+
+        //pages
         $scope.setPage = function (page) {
             $scope.page = page;
             loadService.getBuildings($scope.city, $scope.typeDeal, $scope.page).then(function (buildings) {

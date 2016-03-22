@@ -2,13 +2,14 @@ var testPropertyCross = angular.module('testPropertyCross', ['ngRoute']);
 testPropertyCross.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
     when('/buildings', {
-        templateUrl: 'views/buildings.html',
+        templateUrl: 'results/buildings.html',
         controller: 'ResultController'}).
     when('/find', {
-        templateUrl: 'views/find.html',
+        templateUrl: 'find/find.html',
         controller: 'FindController'}).
-    when('/error', {
-        templateUrl: 'views/error.html'}).
+    when('/details', {
+        templateUrl: 'details/details.html',
+        controller: 'detailsController'}).
     otherwise({
         redirectTo: '/find'
     });
