@@ -1,37 +1,11 @@
 <form name="findForm">
     <div class="jumbotron vertical-center">
         <div class="container">
-            <label>
-                <input type="radio" ng-model="typeDeal" ng-checked="true" value="buy">
-                Buy
-            </label>
-            <label>
-                <input type="radio" ng-model="typeDeal" value="let">
-                Rent
-            </label>
-            <br>
             <div>
-                <div class="col-md-11" style="padding-left: 0px">
-                    <input type="text" ng-model="city" required/>
-                </div>
-                <div class="col-md-1">
-                    <button class="btn btn-toolbar text-right">Favorites</button>
-                </div>
+                <find-component/>
             </div>
-            <br>
-            <button type="submit" class="btn btn-info" ng-click="getBuildings()">Go</button>
-            <br>
-            <label style="color: red;">{{visibleError}}</label>
-            <br>
             <div>
-                History
-                <div style="margin-bottom: 5px" class="list-group" ng-repeat="histObj in historyData track by $index">
-                    <a class="list-group-item" href='{{histObj.link}}'>{{histObj.city}} {{histObj.typeDeal}}<span
-                            class="badge">{{histObj.count}}</span></a>
-                </div>
-                <div class="text-right">
-                    <button class="btn-danger" ng-click="clearHistory()">Clear history</button>
-                </div>
+                <find-component-history/>
             </div>
         </div>
     </div>

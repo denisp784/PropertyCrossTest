@@ -1,0 +1,10 @@
+<div>
+    History
+    <div style="margin-bottom: 5px" class="list-group" ng-repeat="histObj in ctrl.historyData track by $index">
+        <a class="list-group-item" href='{{histObj.link}}'>{{histObj.city}} {{histObj.typeDeal}}<span
+                class="badge">{{histObj.count}}</span></a>
+    </div>
+    <div class="text-right">
+        <button class="btn-danger" ng-click="ctrl.clearHistory()">Clear history</button>
+    </div>
+</div>
